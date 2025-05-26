@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petrol Station Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: #f4f4f4;
+            padding: 20px;
+            height: 100vh;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px;
+            margin-bottom: 10px;
+            background: white;
+            cursor: pointer;
+        }
+        .container {
+            flex: 1;
+            background: #1c2536;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        .card {
+            background: #00a9ce;
+            padding: 20px;
+            width: 250px;
+            color: white;
+            border-radius: 10px;
+        }
+        .progress-bar {
+            height: 10px;
+            background: white;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: green;
+        }
+        .button {
+            background: grey;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Petrol Station</h2>
+        <ul>
+            <li><a href="dashboard.html">dashboard</a></li>
+            <li><a href="pumpss.html">pumps</a></li>
+            <li><a href="customers.html">customers</a></li>
+            <li><a href="accounting.html">accounting</a></li>
+            <li><a href="providers.html">providers</a></li>
+            <li><a href="containers.html">containers</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="card" data-capacity="980" data-total="1000">
+            <h3>Container 95</h3>
+            <div class="progress-bar"><div class="progress"></div></div>
+            <p class="liters">980.00L</p>
+            <p>Pumps</p>
+            <p>Pump 1</p>
+            <p>Pump 2</p>
+            <div class="button" onclick="addShipment(this)">New Shipment</div>
+        </div>
+        <div class="card" data-capacity="3000" data-total="3500">
+            <h3>Container 98</h3>
+            <div class="progress-bar"><div class="progress"></div></div>
+            <p class="liters">3000.00L</p>
+            <p>Pumps</p>
+            <p>Pump 3</p>
+            <p>Pump 4</p>
+            <div class="button" onclick="addShipment(this)">New Shipment</div>
+        </div>
+        <div class="card" data-capacity="0" data-total="2000">
+            <h3>Container Diesel</h3>
+            <div class="progress-bar"><div class="progress"></div></div>
+            <p class="liters">0.00L</p>
+            <p>Pumps</p>
+            <p>Pump 5</p>
+            <div class="button" onclick="addShipment(this)">New Shipment</div>
+        </div>
+    </div>
+    <script>
+        function updateProgress() {
+            document.querySelectorAll('.card').forEach(card => {
+                let capacity = parseFloat(card.getAttribute('data-capacity'));
+                let total = parseFloat(card.getAttribute('data-total'));
+                let percentage = (capacity / total) * 100;
+                card.querySelector('.progress').style.width = percentage + '%';
+            });
+        }
+        
+        function addShipment(button) {
+            let card = button.parentElement;
+            let capacity = parseFloat(card.getAttribute('data-capacity'));
+            let total = parseFloat(card.getAttribute('data-total'));
+            let liters = card.querySelector('.liters');
+            
+            if (capacity < total) {
+                let newCapacity = Math.min(capacity + 500, total);
+                card.setAttribute('data-capacity', newCapacity);
+                liters.innerText = newCapacity.toFixed(2) + 'L';
+                updateProgress();
+            } else {
+                alert('Container is full!');
+            }
+        }
+        
+        updateProgress();
+    </script>
+</body>
+</html>

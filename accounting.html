@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .filters {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        select, input, button {
+            padding: 8px;
+            width: 100%;
+            max-width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .total-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff;
+            border: 2px solid #f0ad4e;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        .total-container h3 {
+            color: #333;
+        }
+        .total-container p {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .bill {
+            color: #ff5733;
+        }
+        .profits {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Accounting</h2>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label for="fuelType">Fuel Type</label>
+                <select id="fuelType">
+                    <option value="all">All Fuel Types</option>
+                    <option value="petrol">Petrol</option>
+                    <option value="diesel">Diesel</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="fromDate">From</label>
+                <input type="date" id="fromDate">
+            </div>
+            <div class="filter-group">
+                <label for="toDate">To</label>
+                <input type="date" id="toDate">
+            </div>
+            <button onclick="filterRecords()">Submit</button>
+        </div>
+
+        <div class="total-container">
+            <h3>TOTAL</h3>
+            <p class="bill">Bill: <span id="billAmount">0 L.L.</span></p>
+            <p class="profits">Profits: <span id="profitAmount">0 L.L.</span></p>
+        </div>
+    </div>
+
+    <script>
+        function filterRecords() {
+            // Simulated values, replace with actual data from backend
+            let billAmount = Math.floor(Math.random() * 2000000) + 500000;
+            let profitAmount = Math.floor(billAmount * 0.2);
+
+            document.getElementById("billAmount").textContent = billAmount.toLocaleString() + " L.L.";
+            document.getElementById("profitAmount").textContent = profitAmount.toLocaleString() + " L.L.";
+        }
+    </script>
+</body>
+</html>

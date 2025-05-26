@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petrol Station Dashboard</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .sidebar {
+            width: 250px;
+            background: #f4f4f4;
+            color: rgb(0, 0, 0);
+            padding: 20px;
+            height: 100vh;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px;
+            margin-bottom:10px;
+            background:white;
+            cursor: pointer;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .pumps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .pump {
+            background: #00a9ce;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .counter {
+            font-size: 24px;
+            font-weight: bold;
+            background: black;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            background: #34495e;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Petrol Station</h2>
+        <ul>
+            <li><a href="dashboard.html">dashboard</a></li>
+            <li><a href="pumpss.html">pumps</a></li>
+            <li><a href="customers.html">customers</a></li>
+            <li><a href="accounting.html">accounting</a></li>
+            <li><a href="providers.html">providers</a></li>
+            <li><a href="containers.html">containers</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <header>
+            <input type="text" placeholder="Add PUMP">
+            <button>LOGOUT</button>
+        </header>
+        <div class="pumps-container">
+            <div class="pump">
+                <h3>Pump 1 <sup>95</sup></h3>
+                <div class="counter">2900</div>
+                <button>New Record</button>
+            </div>
+            <div class="pump">
+                <h3>Pump 2 <sup>95</sup></h3>
+                <div class="counter">5120</div>
+                <button>New Record</button>
+            </div>
+            <div class="pump">
+                <h3>Pump 3 <sup>98</sup></h3>
+                <div class="counter">2000</div>
+                <button>New Record</button>
+            </div>
+            <div class="pump">
+                <h3>Pump 4 <sup>98</sup></h3>
+                <div class="counter">200</div>
+                <button>New Record</button>
+            </div>
+            <div class="pump">
+                <h3>Pump 5 <span>Diesel</span></h3>
+                <div class="counter">350</div>
+                <button>New Record</button>
+            </div>
+            <div class="pump">
+                <h3>Pump 6 <span>Gaz Oil</span></h3>
+                <div class="counter">200</div>
+                <button>New Record</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.pump button').forEach(button => {
+            button.addEventListener('click', () => {
+                alert('New Record Added!');
+            });
+        });
+    </script>
+</body>
+</html>

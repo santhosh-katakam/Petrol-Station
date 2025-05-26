@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Providers - Petrol Station</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        .form-group {
+            margin: 10px 0;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .delete-btn {
+            color: red;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Providers Management</h2>
+
+        <div class="form-group">
+            <input type="text" id="provider-name" placeholder="Provider Name">
+        </div>
+        <div class="form-group">
+            <input type="text" id="fuel-type" placeholder="Fuel Type (Petrol 95, Diesel...)">
+        </div>
+        <div class="form-group">
+            <input type="number" id="supply-amount" placeholder="Supply Amount (Liters)">
+        </div>
+        <div class="form-group">
+            <input type="date" id="delivery-date">
+        </div>
+        <button class="btn" onclick="addProvider()">Add Provider</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Provider Name</th>
+                    <th>Fuel Type</th>
+                    <th>Supply Amount</th>
+                    <th>Delivery Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="providers-list">
+                <!-- Providers will be added dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function addProvider() {
+            let name = document.getElementById('provider-name').value;
+            let fuelType = document.getElementById('fuel-type').value;
+            let amount = document.getElementById('supply-amount').value;
+            let date = document.getElementById('delivery-date').value;
+
+            if (name === '' || fuelType === '' || amount === '' || date === '') {
+                alert('Please fill all fields');
+                return;
+            }
+
+            let table = document.getElementById('providers-list');
+            let row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${name}</td>
+                <td>${fuelType}</td>
+                <td>${amount} L</td>
+                <td>${date}</td>
+                <td><button class="delete-btn" onclick="removeProvider(this)">Delete</button></td>
+            `;
+            table.appendChild(row);
+
+            document.getElementById('provider-name').value = '';
+            document.getElementById('fuel-type').value = '';
+            document.getElementById('supply-amount').value = '';
+            document.getElementById('delivery-date').value = '';
+        }
+
+        function removeProvider(button) {
+            button.parentElement.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
